@@ -1,0 +1,23 @@
+version: '3.6'
+
+services:
+  owncloud:
+    container_name: owncloud
+    image: rniesler/rpi-owncloud
+    ports:
+      - 443:443
+    volumes:
+      - /home/pi/DockerVolumes/Owncloud/config:/var/www/owncloud/config
+      - /home/pi/DockerVolumes/Owncloud/data:/var/www/owncloud/data
+    depends_on:
+      - ownclouddb
+  ownclouddb:
+    container_name: owncloud_db
+    image: hypriot/rpi-mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/pi/DockerVolumes/MySQL:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=initial
+
