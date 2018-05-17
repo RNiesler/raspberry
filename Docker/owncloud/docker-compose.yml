@@ -7,17 +7,24 @@ services:
     ports:
       - 443:443
     volumes:
-      - /home/pi/DockerVolumes/Owncloud/config:/var/www/owncloud/config
-      - /home/pi/DockerVolumes/Owncloud/data:/var/www/owncloud/data
+      - /mnt/raid/Docker/Volumes/OwncloudConfig:/var/www/owncloud/config
+      - /mnt/raid/OwncloudData:/var/www/owncloud/data
     depends_on:
       - ownclouddb
+    restart: always
+    mem_limit: 1000m
   ownclouddb:
     container_name: owncloud_db
     image: hypriot/rpi-mysql
     ports:
       - 3306:3306
     volumes:
-      - /home/pi/DockerVolumes/MySQL:/var/lib/mysql
+      - /mnt/raid/Docker/Volumes/MySQL:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=initial
+    restart: always
+    mem_limit: 500m
 
+networks:
+  default:
+    name: rnpinetwork
