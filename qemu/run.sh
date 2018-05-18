@@ -8,6 +8,5 @@ qemu-system-arm \
 -dtb ./qemu-rpi-kernel/versatile-pb.dtb \
 -no-reboot \
 -serial stdio \
--net nic -net user,hostfwd=tcp::5022-:22
-#-net nic -net user \
-#-net tap,ifname=vnet0,script=no,downscript=no
+-net nic -net user \
+-redir tcp:5022::22
