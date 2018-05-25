@@ -11,6 +11,7 @@ services:
       - /mnt/raid/OwncloudData:/var/www/owncloud/data
     depends_on:
       - ownclouddb
+      - redis
     restart: always
     mem_limit: 1000m
   ownclouddb:
@@ -24,6 +25,12 @@ services:
       - MYSQL_ROOT_PASSWORD=initial
     restart: always
     mem_limit: 500m
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    restart: always
 
 networks:
   default:
