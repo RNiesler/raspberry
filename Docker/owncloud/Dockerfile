@@ -24,8 +24,8 @@ RUN sed -i 's/;env/env/' /etc/php/7.0/fpm/pool.d/www.conf
 
 RUN apt-get install wget bzip2
 RUN mkdir -p /var/www/owncloud && \
- wget https://download.owncloud.org/community/owncloud-10.0.6.tar.bz2 && \
- tar xvf owncloud-10.0.6.tar.bz2 && \
+ wget https://download.owncloud.org/community/owncloud-10.0.8.tar.bz2 && \
+ tar xvf owncloud-10.0.8.tar.bz2 && \
  mv owncloud/ /var/www/ && \
  chown -R www-data:www-data /var/www && \
   rm -rf owncloud owncloud-10.0.6.tar.bz2
