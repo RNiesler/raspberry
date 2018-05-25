@@ -15,6 +15,9 @@ server {
     # Path to the root of your installation
     root /var/www/owncloud;
     client_max_body_size 1000M; # set max upload size
+
+    add_header Strict-Transport-Security "max-age=15552000; includeSubDomains";
+
     fastcgi_buffers 64 4K;
     rewrite ^/caldav(.*)$ /remote.php/caldav$1 redirect;
     rewrite ^/carddav(.*)$ /remote.php/carddav$1 redirect;
