@@ -5,7 +5,7 @@ LABEL maintainer="rniesler@gmail.com"
 
 RUN usermod -a -G www-data www-data
 RUN apt-get update
-RUN apt-get install nginx openssl ssl-cert php7.0-cli php7.0-sqlite php7.0-gd php7.0-common php7.0-cgi sqlite3 php-pear curl libapr1 libtool curl libcurl4-openssl-dev php7.0-xml php7.0 php7.0-dev php7.0-curl php7.0-gd php7.0-fpm memcached php7.0-memcache php7.0-zip php7.0-intl php7.0-mbstring varnish php7.0-mysql
+RUN apt-get install nginx openssl ssl-cert php7.0-cli php7.0-sqlite php7.0-gd php7.0-common php7.0-cgi sqlite3 php-pear curl libapr1 libtool curl libcurl4-openssl-dev php7.0-xml php7.0 php7.0-dev php7.0-curl php7.0-gd php7.0-fpm php7.0-redis php7.0-zip php7.0-intl php7.0-mbstring varnish php7.0-mysql
 
 COPY cert.pem /etc/nginx
 COPY cert.key /etc/nginx
@@ -19,6 +19,8 @@ RUN mkdir /run/php
 RUN sed -i 's/upload_max_filesize =.*/upload_max_filesize = 2000M/' /etc/php/7.0/fpm/php.ini
 RUN sed -i 's/post_max_size =.*/post_max_size = 2000M/' /etc/php/7.0/fpm/php.ini
 RUN sed -i 's/listen =.*/listen = 127.0.0.1:9000/' /etc/php/7.0/fpm/pool.d/www.conf
+#https://doc.owncloud.org/server/10.0/admin_manual/installation/configuration_notes_and_tips.html#php-fpm-tips-label
+RUN sed -i 's/;env/env/' /etc/php/7.0/fpm/pool.d/www.conf
 
 RUN apt-get install wget bzip2
 RUN mkdir -p /var/www/owncloud && \
