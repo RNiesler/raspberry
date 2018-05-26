@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  registry:
+    container_name: registry 
+    image: cblomart/rpi-registry
+    ports:
+      - 5000:5000
+    volumes:
+      - /mnt/raid/Docker/docker-registry:/var/lib/registry
+    restart: always
+    mem_limit: 512m
