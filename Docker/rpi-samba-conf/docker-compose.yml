@@ -17,12 +17,6 @@ services:
     image: rniesler/rpi-avahi
     restart: always
     network_mode: "host"
-    ports:
-      - "5353:5353/udp"
     mem_limit: 256m
     volumes:
       - /mnt/raid/Docker/Volumes/Avahi:/etc/avahi/services
-
-networks:
-  default:
-    name: smbnetwork
