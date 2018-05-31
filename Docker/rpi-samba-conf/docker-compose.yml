@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  samba:
+    container_name: samba
+    image: rniesler/rpi-samba-conf
+    ports:
+      - 455:455
+      - "455:455/udp"
+    volumes:
+      - /mnt/raid/:/data
+    restart: always
+    mem_limit: 512m
+    network_mode: "host"
+  avahi:
+    container_name: avahi
+    image: rniesler/rpi-avahi
+    restart: always
+    network_mode: "host"
+    ports:
+      - "5353:5353/udp"
+    mem_limit: 256m
+    volumes:
+      - /mnt/raid/Docker/Volumes/Avahi:/etc/avahi/services
+
+networks:
+  default:
+    name: smbnetwork

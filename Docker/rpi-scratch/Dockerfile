@@ -1,5 +1,5 @@
 FROM scratch
-ADD alpine-minirootfs-3.5.2-armhf.tar /
+ADD alpine-minirootfs-3.7.0-armhf.tar /
 
 RUN apk update && \
 apk upgrade && \
